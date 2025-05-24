@@ -11,7 +11,7 @@
         @delete-set="deleteSet"
         @open-tabs="openTabs"
         @delete-tab="deleteTab"
-        @update-set-name="updateSetName"
+        @update-set="updateSet"
       />
     </li>
   </ul>
@@ -65,10 +65,10 @@ function deleteTab(tabTitle) {
   emit('delete-tab', tabTitle)
 }
 
-function updateSetName(data) {
-  console.log('Updating set name:', data)
-  emit ('update-set-name', data)
+function updateSet(data) {
+  console.log('Updating set:', data)
+  emit ('update-set', data)
 }
 
-const emit = defineEmits(['save-set', 'delete-set', 'open-tabs', 'delete-tab', 'update-set-name'])
+const emit = defineEmits(['save-set', 'delete-set', 'open-tabs', 'delete-tab', 'update-set'])
 </script>

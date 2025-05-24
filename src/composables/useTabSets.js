@@ -25,8 +25,6 @@ export function useTabSets() {
             ...set,
             tabs: normalizeTabs(set.tabs)
         }))
-
-        console.log('Loaded tab sets:', tabSets.value)
     }
 
     async function saveTabSet(set) {
@@ -41,7 +39,6 @@ export function useTabSets() {
         } else {
             tabSets.value.push(set)
         }
-        console.log('Saving tab sets:', tabSets.value)
         await chrome.storage.local.set({ [STORAGE_KEY]: tabSets.value })
     }
 

@@ -27,7 +27,7 @@
       @delete-set="deleteSet"
       @open-tabs="openTabs"
       @delete-tab="deleteTab"
-      @update-set-name="updateSetName"
+      @update-set="updateSet"
     />
 
     <Modal
@@ -104,13 +104,10 @@ function deleteTab(tabTitle) {
   }
 }
 
-function updateSetName(data) {
-  console.log('Updating set name:', data)
-  const setToUpdate = tabSets.value.find(set => set.id === data.id)
-  console.log('Set to update:', setToUpdate)
-  if (setToUpdate) {
-    setToUpdate.name = data.name
-    saveTabSet(setToUpdate)
+function updateSet(data) {
+  const setToUpdateIndex = tabSets.value.findIndex(set => set.id === data.id)
+  if (setToUpdateIndex) {
+    saveTabSet(data)
   }
 }
 

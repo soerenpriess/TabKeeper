@@ -3,8 +3,9 @@
     <div class="flex items-center justify-center w-full h-14">
       <div class="flex items-center justify-center w-full h-full relative group">
         <div class="flex items-center justify-center w-1/6 ml-3">
-          <div class="w-8 h-8 bg-purple-800 rounded-full flex justify-center items-center">
-            <FontAwesomeIcon :icon="faMusic" class="text-white" />
+          <div class="w-8 h-8 rounded-full flex justify-center items-center" :class="set?.color || 'bg-purple-400'">
+            <FontAwesomeIcon v-if="set.icon && set.icon.prefix && set.icon.iconName"
+              :icon="[set.icon.prefix, set.icon.iconName]" class="text-white text-[15px]" />
           </div>
         </div>
         <div class="w-5/6 flex flex-col">
@@ -41,8 +42,9 @@
         <div class="w-1/4 border-r-1 border-slate-600 flex flex-col justify-center px-2 py-1">
           <label class="text-gray-500 text-md">Icon</label>
           <div class="w-full flex justify-center items-center py-1">
-            <div class="w-10 h-10 bg-purple-800 rounded-full flex justify-center items-center">
-              <FontAwesomeIcon :icon="faMusic" class="text-white text-lg" />
+            <div class="w-10 h-10 rounded-full flex justify-center items-center" :class="set?.color || 'bg-purple-400'">
+              <FontAwesomeIcon v-if="set.icon && set.icon.prefix && set.icon.iconName"
+                :icon="[set.icon.prefix, set.icon.iconName]" class="text-white text-xl" />
             </div>
           </div>
         </div>
@@ -53,14 +55,17 @@
             @wheel.prevent="onWheelScroll($event, 'colorScroll')">
             <div v-for="(color, index) in colors" :key="index" :class="[
               color,
-              'w-6 h-6 rounded-full flex-shrink-0 mr-2 cursor-pointer hover:scale-110 transition-all ease-in-out'
-            ]"></div>
+              'w-6 h-6 rounded-full flex-shrink-0 mr-2 cursor-pointer hover:scale-110 transition-all ease-in-out',
+              color === props.set.color ? 'ring-2 ring-indigo-500 ring-offset-0' : ''
+            ]" @click="selectColor(color)"></div>
           </div>
 
           <div ref="iconScroll" class="w-full h-1/2 flex flex-row overflow-x-auto flex-nowrap px-2 py-2 pr-14"
             @wheel.prevent="onWheelScroll($event, 'iconScroll')">
-            <FontAwesomeIcon v-for="(icon, index) in icons" :key="index" :icon="icon"
-              class="inline-block text-white bg-slate-600 rounded-full p-2 flex-shrink-0 mr-2 hover:scale-110 hover:bg-slate-500 transition-all ease-in-out cursor-pointer" />
+            <FontAwesomeIcon v-for="(ic, index) in icons" :key="index" :icon="ic" :class="[
+              'inline-block text-white bg-slate-600 rounded-full p-2 flex-shrink-0 mr-2 hover:scale-110 hover:bg-slate-500 transition-all ease-in-out cursor-pointer',
+              ic.iconName === props.set.icon?.iconName ? 'ring-2 ring-indigo-500 ring-offset-0' : ''
+            ]" @click="selectIcon(ic)" />
           </div>
         </div>
       </div>
@@ -69,7 +74,7 @@
 
       <div class="flex flex-col px-2 py-1">
         <div class="flex flex-col">
-          <NameInput v-model="set.name" />
+          <NameInput v-model="name" />
         </div>
       </div>
       <div class="border-t-[1px] border-slate-600 w-full my-1"></div>
@@ -104,24 +109,7 @@ const props = defineProps({
   expanded: Boolean
 })
 
-
-let emitReady = false
-nextTick(() => { emitReady = true })
-
-watch(
-  () => props.set.name,
-  (newName, oldName) => {
-    if (!emitReady) return
-    if (newName && newName !== undefined && newName !== null && props.set.id) {
-      const data = {
-        id: props.set.id,
-        name: newName
-      }
-      emit('update-set-name', data)
-    }
-  },
-  { deep: true, immediate: true }
-)
+const name = ref(props.set?.name || '')
 
 function deleteSet(setId) {
   emit('delete-set', setId)
@@ -172,5 +160,37 @@ function onWheelScroll(event, refName) {
   container.scrollLeft += event.deltaY
 }
 
-const emit = defineEmits(['toggle-expand', 'delete-set', 'open-tabs', 'delete-tab', 'update-set-name'])
+function selectColor(c) {
+  if (props.set) {
+    const data = {
+      ...props.set,
+      color: c
+    }
+    console.log('Updating set color:', data)
+    emit('update-set', data)
+  }
+}
+
+function selectIcon(ic) {
+  if (props.set) {
+    const data = {
+      ...props.set,
+      icon: ic
+    }
+    console.log('Updating set icon:', data)
+    emit('update-set', data)
+  }
+}
+
+watch(name, (newVal) => {
+  if (props.set) {
+    const data = {
+      ...props.set,
+      name: newVal
+    }
+    emit('update-set', data)
+  }
+})
+
+const emit = defineEmits(['toggle-expand', 'delete-set', 'open-tabs', 'delete-tab', 'update-set'])
 </script>
