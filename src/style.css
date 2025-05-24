@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+:root {
+    --primary: #3b82f6;
+    --secondary: #10b981;
+    --bg: #ffffff;
+    --text: #1f2937;
+}
+
+.dark {
+    --primary: #1d4ed8;
+    --secondary: #047857;
+    --bg: #1f2937;
+    --text: #f9fafb;
+}
+
+.bg-custom-bg {
+    background-color: var(--bg);
+}
+
+.text-custom-text {
+    color: var(--text);
+}
+
+.bg-custom-primary {
+    background-color: var(--primary);
+}
+
+.bg-custom-secondary {
+    background-color: var(--secondary);
+}
+
+
+
+/* Custom Scrollbar passend zum Slate-Dark-Design */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1e293b;
+    /* slate-800 */
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #334155;
+    /* slate-700 */
+    border-radius: 6px;
+    border: 2px solid #1e293b;
+    /* Abstand zum Track */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #4f5a6a;
+    /* slate-600 */
+}
