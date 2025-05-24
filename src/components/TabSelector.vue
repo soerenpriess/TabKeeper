@@ -1,10 +1,10 @@
 <template>
   <div class="relative">
-    <h3 class="font-semibold mb-3 text-slate-400">Select Tabs</h3>
+    <h3 class="mb-3 text-gray-500">Select Tabs</h3>
     <div class="mb-4 flex items-center space-x-3">
       <input type="checkbox" id="selectAll" :checked="allSelected" @change="toggleSelectAll"
-        class="w-5 h-5 rounded border-slate-600 bg-slate-800 text-indigo-500 focus:ring-indigo-400 focus:ring-2 cursor-pointer" />
-      <label for="selectAll" class="select-none cursor-pointer text-slate-400 font-medium">
+        class="w-4 h-4 rounded border-slate-600 bg-slate-800 text-indigo-500 focus:ring-indigo-400 focus:ring-2 cursor-pointer" />
+      <label for="selectAll" class="select-none cursor-pointer text-gray-500">
         Select All
       </label>
     </div>
@@ -102,7 +102,7 @@ function toggleExpanded() {
 
 <style scoped>
 .collapsed-list {
-  max-height: 160px;
+  max-height: 180px;
   transition: max-height 0.3s ease;
   position: relative;
   z-index: 10;
