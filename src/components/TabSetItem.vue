@@ -81,7 +81,7 @@
       <div class="w-full my-3 flex justify-center items-center">
         <p @click="deleteSet(set.id)"
           class="w-5/6 text-center rounded-lg bg-red-500/60 px-4 py-1 text-gray-300 hover:scale-105 hover:bg-red-500/90 hover:text-white transition-all ease-in-out cursor-pointer">
-          Delete TabSet</p>
+          Delete Tab Set</p>
       </div>
       <div class="border-t-[1px] border-slate-600 w-full my-1"></div>
       <div class="flex flex-col px-2 py-1">

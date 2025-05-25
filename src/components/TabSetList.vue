@@ -1,8 +1,8 @@
 <template>
   <div @click="showNewTabSetForm" class="w-full px-4 py-2 mb-4 rounded-lg bg-slate-900 border-slate-600 border-1 text-white text-center hover:scale-105 hover:bg-slate-950 transition-all ease-in-out cursor-pointer">
-    Add new TabSet
+    Add new Tab Set
   </div>
-  <ul class="space-y-3 max-h-[400px] overflow-auto">
+  <ul class="space-y-3 overflow-auto">
     <li v-for="set in tabSets" :key="set.id">
       <TabSetItem
         :set="set"

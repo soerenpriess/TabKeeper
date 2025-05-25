@@ -5,7 +5,7 @@
         <img src="./../public/logo-transparent.png" alt="Tab Keeper Logo" class="h-8" />
         <h1 class="text-lg font-bold text-center text-white">Tab Keeper</h1>
       </div>
-      <div class="p-4">
+      <div class="p-4 h-full">
         <TabSetList :tabSets="tabSets" @save-set="saveSet" @delete-set="deleteSet" @open-tabs="openTabs"
           @delete-tab="deleteTab" @update-set="updateSet" />
   

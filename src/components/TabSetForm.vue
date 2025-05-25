@@ -5,7 +5,7 @@
       class="bg-slate-900 text-white rounded border-slate-600 border-1 p-6 w-full h-full overflow-auto shadow-lg animate-fadeIn"
       @click.stop>
       <h2 class="text-xl font-semibold mb-4">
-        Create a new Tab-Set
+        Create a new Tab Set
       </h2>
       <form @submit.prevent="submitForm" class="space-y-4">
 
