@@ -1,21 +1,9 @@
 <template>
   <div class="min-h-[600px] min-w-[300px] bg-slate-800 font-sans">
     <template v-if="!loading">
-      <div class="bg-slate-900 px-4 py-3">
-        <h1 class="text-xl font-bold mb-2 text-center text-white">Tab Keeper</h1>
-        <div
-          class="w-full h-8 bg-slate-700 border-slate-600 border-1 rounded-lg flex justify-evenly items-center relative ">
-          <div
-            class="absolute bg-slate-900 rounded-md h-[calc(100%-0.2rem)] transition-all duration-300 ease-in-out border-slate-600 border-1"
-            :style="{
-              width: `calc(50% - 0.20rem)`,
-              left: activeTab === 'home' ? '0.25rem' : 'calc(50%)'
-            }"></div>
-          <div v-for="tab in tabs" :key="tab.id" @click="activeTab = tab.id"
-            class="w-full h-full flex justify-center items-center relative z-10 cursor-pointer">
-            <p class="text-white">{{ tab.label }}</p>
-          </div>
-        </div>
+      <div class="bg-slate-900 px-4 py-2 flex items-center justify-start">
+        <img src="./../public/logo-transparent.png" alt="Tab Keeper Logo" class="h-8" />
+        <h1 class="text-lg font-bold text-center text-white">Tab Keeper</h1>
       </div>
       <div class="p-4">
         <TabSetList :tabSets="tabSets" @save-set="saveSet" @delete-set="deleteSet" @open-tabs="openTabs"
@@ -46,12 +34,6 @@ const { tabSets, loadTabSets, saveTabSet, removeTabSet } = useTabSets()
 const loading = ref(true)
 const modalVisible = ref(false)
 const deletingSet = ref(null)
-
-const tabs = [
-  { id: 'home', label: 'Home' },
-  { id: 'settings', label: 'Settings' }
-]
-const activeTab = ref('home')
 
 onMounted(async () => {
   loading.value = true
