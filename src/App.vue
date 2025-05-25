@@ -85,10 +85,10 @@ function deleteSetConfirm() {
   deletingSet.value = null
 }
 
-function deleteTab(tabTitle) {
-  const setToUpdate = tabSets.value.find(set => set.tabs.some(tab => tab.title === tabTitle))
+function deleteTab(tabUrl) {
+  const setToUpdate = tabSets.value.find(set => set.tabs.some(tab => tab.url === tabUrl))
   if (setToUpdate) {
-    setToUpdate.tabs = setToUpdate.tabs.filter(tab => tab.title !== tabTitle)
+    setToUpdate.tabs = setToUpdate.tabs.filter(tab => tab.url !== tabUrl)
     if (setToUpdate.tabs.length === 0) {
       removeTabSet(setToUpdate.id)
     } else {
@@ -99,9 +99,10 @@ function deleteTab(tabTitle) {
 
 function updateSet(data) {
   const setToUpdateIndex = tabSets.value.findIndex(set => set.id === data.id)
-  if (setToUpdateIndex) {
-    saveTabSet(data)
+  if (setToUpdateIndex === -1) {
+    return
   }
+    saveTabSet(data)
 }
 
 </script>

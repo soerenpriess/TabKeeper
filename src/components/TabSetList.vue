@@ -61,8 +61,8 @@ function openTabs(tabs) {
   emit('open-tabs', tabs)
 }
 
-function deleteTab(tabTitle) {
-  emit('delete-tab', tabTitle)
+function deleteTab(tabUrl) {
+  emit('delete-tab', tabUrl)
 }
 
 function updateSet(data) {

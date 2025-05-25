@@ -38,8 +38,8 @@ function openTab() {
 }
 
 function deleteTab() {
-  const tabTitle = props.tab.title
-  emit('delete-tab', tabTitle)
+  const tabUrl = props.tab.url
+  emit('delete-tab', tabUrl)
 }
 
 const emit = defineEmits(['delete-tab'])

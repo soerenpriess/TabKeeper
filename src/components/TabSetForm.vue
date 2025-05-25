@@ -16,7 +16,6 @@
               <FontAwesomeIcon :icon="icon" class="text-white text-2xl" />
             </div>
           </div>
-
         </div>
 
         <div class="flex flex-col w-full">
@@ -46,11 +45,11 @@
         <div class="flex justify-end space-x-3 mt-6">
           <button type="button" @click="$emit('close')"
             class="px-4 py-2 rounded border border-gray-300 hover:bg-gray-100 hover:text-black hover:scale-110 transition cursor-pointer">
-            Abbrechen
+            Cancel
           </button>
           <button type="submit"
             class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition cursor-pointer hover:scale-110">
-            Speichern
+            Save
           </button>
         </div>
       </form>
