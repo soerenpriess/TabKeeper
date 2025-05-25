@@ -29,7 +29,8 @@
 
 <script setup>
 const props = defineProps({
-  tab: String
+  tab: String,
+  setId: String
 })
 
 function openTab() {
@@ -39,7 +40,11 @@ function openTab() {
 
 function deleteTab() {
   const tabUrl = props.tab.url
-  emit('delete-tab', tabUrl)
+  const data = {
+    setId: props.setId,
+    tabUrl: tabUrl
+  }
+  emit('delete-tab', data)
 }
 
 const emit = defineEmits(['delete-tab'])

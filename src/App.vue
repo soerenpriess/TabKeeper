@@ -67,15 +67,35 @@ function deleteSetConfirm() {
   deletingSet.value = null
 }
 
-function deleteTab(tabUrl) {
-  const setToUpdate = tabSets.value.find(set => set.tabs.some(tab => tab.url === tabUrl))
-  if (setToUpdate) {
-    setToUpdate.tabs = setToUpdate.tabs.filter(tab => tab.url !== tabUrl)
-    if (setToUpdate.tabs.length === 0) {
-      removeTabSet(setToUpdate.id)
-    } else {
-      saveTabSet(setToUpdate)
-    }
+function deleteTab(data) {
+  const tabUrl = data.tabUrl
+  const setId = data.setId
+
+  if (!tabUrl || !setId) {
+    console.error('Invalid data for deleting tab:', data)
+    return
+  }
+
+  const setToUpdate = tabSets.value.find(set => set.id === setId)
+
+  if (!setToUpdate) {
+    console.error('Set not found for tab deletion:', setId)
+    return
+  }
+
+  const setHadTab = setToUpdate.tabs.some(tab => tab.url === tabUrl)
+
+  if (!setHadTab) {
+    console.error('Tab not found in set for deletion:', tabUrl)
+    return
+  }
+
+  setToUpdate.tabs = setToUpdate.tabs.filter(tab => tab.url !== tabUrl)
+
+  if (setToUpdate.tabs.length === 0) {
+    removeTabSet(setToUpdate.id)
+  } else {
+    saveTabSet(setToUpdate)
   }
 }
 

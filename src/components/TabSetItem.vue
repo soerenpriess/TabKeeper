@@ -88,7 +88,7 @@
         <div class="flex flex-col">
           <p class="text-gray-500 text-md mb-2">Tab(s)</p>
           <div class="max-h-52 overflow-auto scrollbar">
-            <TabItem v-for="tab in set.tabs" :key="tab.name" :tab="tab" @delete-tab="deleteTab" />
+            <TabItem v-for="tab in set.tabs" :key="tab.name" :tab="tab" :set-id="set.id" @delete-tab="deleteTab" />
           </div>
         </div>
       </div>
@@ -119,8 +119,8 @@ function openTabs(tabs) {
   emit('open-tabs', tabs)
 }
 
-function deleteTab(tabTitle) {
-  emit('delete-tab', tabTitle)
+function deleteTab(data) {
+  emit('delete-tab', data)
 }
 
 const colors = [
