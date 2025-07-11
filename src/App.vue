@@ -26,11 +26,13 @@
 import TabSetList from './components/TabSetList.vue'
 import { onMounted, ref } from 'vue'
 import { useTabSets } from './composables/useTabSets'
+import { useLogger } from './composables/useLogger'
 import Modal from './components/Modal.vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 const { tabSets, loadTabSets, saveTabSet, removeTabSet } = useTabSets()
+const { error } = useLogger()
 const loading = ref(true)
 const modalVisible = ref(false)
 const deletingSet = ref(null)
@@ -72,21 +74,21 @@ function deleteTab(data) {
   const setId = data.setId
 
   if (!tabUrl || !setId) {
-    console.error('Invalid data for deleting tab:', data)
+    error('Invalid data for deleting tab:', data)
     return
   }
 
   const setToUpdate = tabSets.value.find(set => set.id === setId)
 
   if (!setToUpdate) {
-    console.error('Set not found for tab deletion:', setId)
+    error('Set not found for tab deletion:', setId)
     return
   }
 
   const setHadTab = setToUpdate.tabs.some(tab => tab.url === tabUrl)
 
   if (!setHadTab) {
-    console.error('Tab not found in set for deletion:', tabUrl)
+    error('Tab not found in set for deletion:', tabUrl)
     return
   }
 
