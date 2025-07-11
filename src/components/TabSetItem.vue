@@ -103,12 +103,14 @@ import { faMusic, faCartShopping, faCode, faBriefcase, faRocket, faHouse, faFire
 import TabItem from './TabItem.vue'
 import NameInput from './TextInput.vue'
 import { watch, nextTick, ref } from 'vue'
+import { useLogger } from '../composables/useLogger'
 
 const props = defineProps({
   set: Object,
   expanded: Boolean
 })
 
+const { debug } = useLogger()
 const name = ref(props.set?.name || '')
 
 function deleteSet(setId) {
@@ -166,7 +168,7 @@ function selectColor(c) {
       ...props.set,
       color: c
     }
-    console.log('Updating set color:', data)
+    debug('Updating set color:', data)
     emit('update-set', data)
   }
 }
@@ -177,7 +179,7 @@ function selectIcon(ic) {
       ...props.set,
       icon: ic
     }
-    console.log('Updating set icon:', data)
+    debug('Updating set icon:', data)
     emit('update-set', data)
   }
 }
