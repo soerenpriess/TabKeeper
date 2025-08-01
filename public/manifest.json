@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "Tab Keeper",
     "version": "1.0",
-    "description": "Organize your open tabs as clear tab sets! Save, group, and name tab collections with custom colors and icons. Switch between workspaces, open tabs with one click, and boost your productivity",
+    "description": "Organize your tabs into sets with colors and icons. Switch workspaces and open tabs quickly to boost productivity.",
     "icons": {
         "16": "logo-transparent.png",
         "32": "logo-transparent.png",
