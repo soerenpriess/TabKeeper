@@ -26,8 +26,10 @@
 import TabSetItem from './TabSetItem.vue'
 import { ref, reactive } from 'vue'
 import TabSetForm from './TabSetForm.vue'
+import { useLogger } from '../composables/useLogger'
 
 const isNewTabSetModalVisible = ref(false)
+const { info } = useLogger()
 
 const props = defineProps({
   tabSets: Array
@@ -66,7 +68,7 @@ function deleteTab(data) {
 }
 
 function updateSet(data) {
-  console.log('Updating set:', data)
+  info('Updating set:', data)
   emit ('update-set', data)
 }
 

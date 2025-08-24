@@ -63,8 +63,10 @@ import TabSelector from './TabSelector.vue'
 import TextInput from './TextInput.vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faMusic, faCartShopping, faCode, faBriefcase, faRocket, faHouse, faFireFlameCurved, faGamepad, faHeart, faStar, faFolder, faCube, faOtter, faCubes } from '@fortawesome/free-solid-svg-icons'
+import { useLogger } from '../composables/useLogger'
 
 const emit = defineEmits(['close', 'save'])
+const { debug } = useLogger()
 
 const name = ref('')
 const tabs = ref([])
@@ -79,7 +81,7 @@ async function loadCurrentTabs() {
   const tabsInWindow = await new Promise(resolve =>
     chrome.tabs.query({ currentWindow: true }, resolve)
   )
-  console.log('Tabs in current window:', tabsInWindow)
+  debug('Tabs in current window:', tabsInWindow)
   tabs.value = tabsInWindow.map(t => ({
     url: t.url,
     title: t.title,
